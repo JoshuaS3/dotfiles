@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Bash config
+echo "Bash config"
+cp .bash_aliases ~/.bash_aliases
+cp .bashrc ~/.bashrc
+
+# Git config
+echo "Git config"
+cp .gitconfig ~/.gitconfig
+
+# Vim config
+echo "Vim config"
+mkdir -p ~/.vim
+cp vimrc ~/.vim/vimrc
+
+echo "Installing Vim Plug"
+curl -fLso ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Done
+echo "Done"
