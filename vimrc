@@ -11,6 +11,15 @@ inoremap jk <ESC>
 noremap <leader>w ^
 noremap <leader>e $
 noremap <leader>f <c-w>
+noremap <leader><CR>1 :b1<CR>
+noremap <leader><CR>2 :b2<CR>
+noremap <leader><CR>3 :b3<CR>
+noremap <leader><CR>4 :b4<CR>
+noremap <leader><CR>5 :b5<CR>
+noremap <leader><CR>6 :b6<CR>
+noremap <leader><CR>7 :b7<CR>
+noremap <leader><CR>8 :b8<CR>
+noremap <leader><CR>9 :b9<CR>
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
