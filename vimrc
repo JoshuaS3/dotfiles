@@ -72,4 +72,3 @@ autocmd VimEnter * AirlineTheme deus
 
 " NERDTree
 let NERDTreeShowHidden=1
-autocmd VimEnter * NERDTree
