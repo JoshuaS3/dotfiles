@@ -6,6 +6,10 @@ cp .bash_aliases ~/.bash_aliases
 cp .bashrc ~/.bashrc
 cp .profile ~/.profile
 
+# GTK config
+echo "GTK config"
+cp gtk.css ~/.config/gtk-3.0/gtk.css
+
 # Git config
 echo "Git config"
 cp .gitconfig ~/.gitconfig

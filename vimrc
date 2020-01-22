@@ -11,6 +11,7 @@ inoremap jk <ESC>
 noremap <leader>w ^
 noremap <leader>e $
 noremap <leader>f <c-w>
+noremap <c-n> :tabnew<CR>
 noremap <leader><CR>1 :b1<CR>
 noremap <leader><CR>2 :b2<CR>
 noremap <leader><CR>3 :b3<CR>
@@ -53,12 +54,11 @@ highlight VertSplit ctermbg=NONE ctermfg=NONE term=NONE cterm=NONE gui=NONE
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'mhartington/oceanic-next'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'vim-syntastic/syntastic'
 Plug 'bling/vim-bufferline'
 
 call plug#end()
@@ -74,10 +74,16 @@ autocmd VimEnter *
 
 " Plugin configuration
 
+" Theme
+if (has("termguicolors"))
+	set termguicolors
+endif
+colorscheme OceanicNext
+
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts=1
-autocmd VimEnter * AirlineTheme deus
+let g:airline_theme='oceanicnext'
 
 " NERDTree
 let NERDTreeShowHidden=1

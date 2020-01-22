@@ -1,0 +1,11 @@
+.titlebar {
+	background-image: linear-gradient(to right, #4574e0, #6a2172);
+	font-weight: bold;
+	color:white;
+	padding: 2px;
+}
+.titlebar:backdrop {
+	background-image: linear-gradient(to right, #7d99e0, #703d72);
+	font-weight: bold;
+	color:white;
+}
