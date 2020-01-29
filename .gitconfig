@@ -3,3 +3,5 @@
 	name = Josh Stockin
 [core]
 	editor = vim
+[commit]
+	gpgsign = true
