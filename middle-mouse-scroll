@@ -1,0 +1,6 @@
+#!/bin/bash
+
+MOUSE_ID=$(xinput | \grep "Mouse" | sed 's/.*id=\([0-9]\+\).*/\1/')
+
+xinput set-prop $MOUSE_ID "libinput Scroll Method Enabled" 0, 0, 1
+xinput set-prop $MOUSE_ID "libinput Button Scrolling Button" 2

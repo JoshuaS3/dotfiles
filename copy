@@ -5,6 +5,7 @@ echo "Bash config"
 cp .bash_aliases ~/.bash_aliases
 cp .bashrc ~/.bashrc
 cp .profile ~/.profile
+cp middle-mouse-scroll ~/middle-mouse-scroll
 
 # GTK config
 echo "GTK config"
