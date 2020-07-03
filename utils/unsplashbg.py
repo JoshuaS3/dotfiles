@@ -7,12 +7,17 @@ import os
 import random
 import requests
 
+IMAGE_WIDTH = 3840
+IMAGE_HEIGHT = 1080
+TEXT_ENABLED = True
+
 UNSPLASH_API = "https://api.unsplash.com/search/photos"
 
 REQUEST_HEADERS = {"Accept-Version": "v1"}
 REQUEST_PAYLOAD = {"per_page": 10, "orientation": "landscape"}
 
-CROP_PARAMS = "&fm=png&fit=crop&w=3840&h=1080"
+CROP_PARAMS = f"&fm=png&fit=crop&w={IMAGE_WIDTH}&h={IMAGE_HEIGHT}"
+TEXT_PARAMS = "&txt-color=FFFFFF&txt-size=18&txt-shad=5&txt-pad=60"
 
 
 def fetch_images(api_key: str, query: str, page_num: int):
@@ -38,8 +43,14 @@ def fetch_images(api_key: str, query: str, page_num: int):
     # parse JSON
     json = result.json()
     images = []
-    for image in json["results"]:
-        images.append(image["urls"]["raw"] + CROP_PARAMS)
+    try:
+        for image in json["results"]:
+            url = image["urls"]["raw"] + CROP_PARAMS
+            if TEXT_ENABLED:
+                url += f"&txt={query.upper()} ({page_num})" + TEXT_PARAMS
+            images.append(url)
+    except IndexError:
+        return 1
 
     return images
 
