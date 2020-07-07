@@ -16,7 +16,7 @@ UNSPLASH_API = "https://api.unsplash.com/search/photos"
 REQUEST_HEADERS = {"Accept-Version": "v1"}
 REQUEST_PAYLOAD = {"per_page": 10, "orientation": "landscape"}
 
-CROP_PARAMS = f"&fm=png&fit=crop&w={IMAGE_WIDTH}&h={IMAGE_HEIGHT}"
+CROP_PARAMS = f"&fm=jpg&q=90&fit=crop&w={IMAGE_WIDTH}&h={IMAGE_HEIGHT}"
 TEXT_PARAMS = "&txt-color=FFFFFF&txt-size=18&txt-shad=5&txt-pad=60"
 
 
@@ -100,6 +100,7 @@ def main():
     page_num = 0
     while True:
         page_num += 1
+        page_num = page_num if page_num < 4 else 1
         images = []
         for query in queries:
             search = None
