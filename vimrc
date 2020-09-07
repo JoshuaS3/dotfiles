@@ -40,12 +40,13 @@ set showcmd
 set showmatch
 
 set number
-set numberwidth=6
+set numberwidth=4
 highlight LineNr term=bold ctermfg=grey
 
 set tabstop=4
 set shiftwidth=4
 set smarttab
+set expandtab
 
 highlight VertSplit ctermbg=NONE ctermfg=NONE term=NONE cterm=NONE gui=NONE
 
@@ -60,6 +61,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'bling/vim-bufferline'
+Plug 'airblade/vim-gitgutter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'sheerun/vim-polyglot'
+Plug 'ervandew/supertab'
 
 call plug#end()
 
@@ -76,7 +82,7 @@ autocmd VimEnter *
 
 " Theme
 if (has("termguicolors"))
-	set termguicolors
+    set termguicolors
 endif
 colorscheme OceanicNext
 

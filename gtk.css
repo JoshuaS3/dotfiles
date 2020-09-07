@@ -1,13 +1,13 @@
 .titlebar {
-	background-image: linear-gradient(to left, #27527c, #fc5130);
-	font-weight: bold;
-	color:white;
+    background-image: linear-gradient(to left, #27527c, #fc5130);
+    font-weight: bold;
+    color:white;
 }
 .titlebar:backdrop {
-	background-image: linear-gradient(to left, #31669b, #fc684a);
-	font-weight: bold;
-	color:white;
+    background-image: linear-gradient(to left, #31669b, #fc684a);
+    font-weight: bold;
+    color:white;
 }
 vte-terminal {
-	padding: 12px;
+    padding: 12px;
 }
