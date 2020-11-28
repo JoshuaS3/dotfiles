@@ -9,7 +9,7 @@ import requests
 
 IMAGE_WIDTH = 3840
 IMAGE_HEIGHT = 1080
-TEXT_ENABLED = True
+TEXT_ENABLED = False
 
 UNSPLASH_API = "https://api.unsplash.com/search/photos"
 
@@ -56,7 +56,7 @@ def fetch_images(api_key: str, query: str, page_num: int):
 
 
 def display_image(url: str):
-    """Download image by URL to /tmp/unsplash_bg.png and set as background"""
+    """Download image by URL to /tmp/unsplash_bg.jpg and set as background"""
 
     # download
     image = requests.get(url, stream=True)
@@ -65,14 +65,14 @@ def display_image(url: str):
         print(image)
         return 1
 
-    # save to /tmp/unsplash_bg.png
-    with open("/tmp/unsplash_bg.png", "wb") as image_file:
+    # save to /tmp/unsplash_bg.jpg
+    with open("/tmp/unsplash_bg.jpg", "wb") as image_file:
         for chunk in image:
             image_file.write(chunk)
 
     # use gsettings to set as new background
     os.system(
-        "/usr/bin/gsettings set org.gnome.desktop.background picture-uri /tmp/unsplash_bg.png"
+        "/usr/bin/gsettings set org.gnome.desktop.background picture-uri /tmp/unsplash_bg.jpg"
     )
     return 0
 
