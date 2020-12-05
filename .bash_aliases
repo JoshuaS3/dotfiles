@@ -1,4 +1,3 @@
 alias python='python3'
 alias v='vim'
-
-export EC2="joshstock.in"
+alias gp='git push; git push github'
