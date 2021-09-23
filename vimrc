@@ -41,24 +41,24 @@ set showmatch
 
 set number
 set numberwidth=4
-highlight LineNr term=bold ctermfg=grey
+highlight LineNr term=bold ctermfg=grey " RMHEADLESS
 
 set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
 
-highlight VertSplit ctermbg=NONE ctermfg=NONE term=NONE cterm=NONE gui=NONE
+highlight VertSplit ctermbg=NONE ctermfg=NONE term=NONE cterm=NONE gui=NONE "RMHEADLESS
 
 
 " Enable Plug plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
-Plug 'mhartington/oceanic-next'
+Plug 'mhartington/oceanic-next' "RMHEADLESS
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons' "RMHEADLESS
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
@@ -82,14 +82,14 @@ autocmd VimEnter *
 
 " Theme
 if (has("termguicolors"))
-    set termguicolors
+    set termguicolors "RMHEADLESS
 endif
-colorscheme OceanicNext
+colorscheme OceanicNext "RMHEADLESS
 
 " Airline
 set laststatus=2
-let g:airline_powerline_fonts=1
-let g:airline_theme='oceanicnext'
+let g:airline_powerline_fonts=1 "RMHEADLESS
+let g:airline_theme='oceanicnext' "RMHEADLESS
 
 " NERDTree
 let NERDTreeShowHidden=1
