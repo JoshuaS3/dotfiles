@@ -83,16 +83,20 @@ if [ $UNIT == "DESKTOP" ] || [ $UNIT == "LAPTOP" ]; then
     mkdir -p $FONTDIR
 
     item "Fira Sans pack"
+    if [ ! -f $FONTDIR/FiraSans-Regular.ttf ]; then
+        curl -fLso /tmp/Fira.zip https://fonts.google.com/download?family=Fira%20Sans
+        unzip -q /tmp/Fira.zip -d $FONTDIR
+    fi
 
     item "Fira Mono (Powerline-patched) pack"
-    if [ ! -f $FONTDIR/FiraMono-Regular.otf ]; then
-        curl -fLso $FONTDIR/FiraMono-Regular.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Regular%20Powerline.otf
+    if [ ! -f $FONTDIR/FuraMono-Regular\ Powerline.otf ]; then
+        curl -fLso $FONTDIR/FuraMono-Regular\ Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Regular%20Powerline.otf
     fi
-    if [ ! -f $FONTDIR/FiraMono-Medium.otf ]; then
-        curl -fLso $FONTDIR/FiraMono-Medium.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Medium%20Powerline.otf
+    if [ ! -f $FONTDIR/FuraMono-Medium.otf ]; then
+        curl -fLso $FONTDIR/FuraMono-Medium\ Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Medium%20Powerline.otf
     fi
-    if [ ! -f $FONTDIR/FiraMono-Bold.otf ]; then
-        curl -fLso $FONTDIR/FiraMono-Bold.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Bold%20Powerline.otf
+    if [ ! -f $FONTDIR/FuraMono-Bold.otf ]; then
+        curl -fLso $FONTDIR/FuraMono-Bold\ Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Bold%20Powerline.otf
     fi
 
     item "Refreshing font cache"
