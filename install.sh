@@ -49,6 +49,11 @@ mkdir -p $SRCFOLDER
 item "~/.local/bin/"
 LOCALBIN=$HOME/.local/bin
 mkdir -p $LOCALBIN
+item "~/.local/fonts/"
+FONTDIR=$HOME/.local/fonts
+mkdir -p $FONTDIR
+item "~/.local/share/"
+mkdir -p $HOME/.local/share
 
 # Local scripts
 category "Local scripts"
@@ -84,25 +89,21 @@ if [ $UNIT == "DESKTOP" ] || [ $UNIT == "LAPTOP" ]; then
     # Fonts
     category "Fonts"
 
-    item "~/.fonts/"
-    FONTDIR=$HOME/.fonts
-    mkdir -p $FONTDIR
-
     item "Fira Sans pack"
     if [ ! -f $FONTDIR/FiraSans-Regular.ttf ]; then
         curl -fLso /tmp/Fira.zip https://fonts.google.com/download?family=Fira%20Sans
         unzip -q /tmp/Fira.zip -d $FONTDIR
     fi
 
-    item "Fira Mono (Powerline-patched) pack"
-    if [ ! -f $FONTDIR/FuraMono-Regular\ Powerline.otf ]; then
-        curl -fLso $FONTDIR/FuraMono-Regular\ Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Regular%20Powerline.otf
+    item "Fira Mono (Nerd Fonts) pack"
+    if [ ! -f $FONTDIR/FiraMono-Regular.otf ]; then
+        curl -fLso $FONTDIR/FiraMono-Regular.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Regular/complete/Fura%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.otf
     fi
-    if [ ! -f $FONTDIR/FuraMono-Medium.otf ]; then
-        curl -fLso $FONTDIR/FuraMono-Medium\ Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Medium%20Powerline.otf
+    if [ ! -f $FONTDIR/FiraMono-Medium.otf ]; then
+        curl -fLso $FONTDIR/FiraMono-Medium.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Medium/complete/Fura%20Mono%20Medium%20Nerd%20Font%20Complete%20Mono.otf
     fi
-    if [ ! -f $FONTDIR/FuraMono-Bold.otf ]; then
-        curl -fLso $FONTDIR/FuraMono-Bold\ Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Bold%20Powerline.otf
+    if [ ! -f $FONTDIR/FiraMono-Bold.otf ]; then
+        curl -fLso $FONTDIR/FiraMono-Bold.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Bold/complete/Fura%20Mono%20Bold%20Nerd%20Font%20Complete%20Mono.otf
     fi
 
     item "Refreshing font cache"
@@ -137,11 +138,7 @@ else
 fi
 
 item "~/.vim/autoload/plug.vim"
-if [ $UNIT == "HEADLESS" ]; then
-    curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-else
-    curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
+curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Done
 echo -e " \e[1;33mDONE\e[0m"
