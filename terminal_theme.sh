@@ -10,7 +10,7 @@ case $1 in
         export TERMINAL="gnome-terminal"
         ;;
     laptop)
-        export TERMINAL="xfce4-terminal"
+        export TERMINAL="gnome-terminal"
         ;;
     *)
         echo "Bad input $1"
