@@ -56,13 +56,13 @@ if [ $UNIT == "DESKTOP" ]; then
     item "~/.local/bin/middle-mouse-scroll"
     install $SCRIPT_DIR/middle-mouse-scroll $LOCALBIN/middle-mouse-scroll
 fi
-item "~/.local/bin/minesweeper"
+item "/usr/local/bin/minesweeper"
 if ! command -v minesweeper &> /dev/null
 then
     git clone --depth=1 git://joshstock.in/ncurses-minesweeper.git $SRCFOLDER/ncurses-minesweeper
     cd $SRCFOLDER/ncurses-minesweeper
     make compile build
-    install bin/minesweeper $LOCALBIN/minesweeper
+    install bin/minesweeper /usr/local/bin/minesweeper
     rm -rf $SRCFOLDER/ncurses-minesweeper
     cd $SCRIPT_DIR
 fi
@@ -118,19 +118,30 @@ install $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
 # Vim
 category "Vim config"
 
-item "~/.vim/"
-VIMDIR=$HOME/.vim
-mkdir -p $VIMDIR
+if [ $UNIT == "HEADLESS" ]; then
+    item "/usr/share/vim/"
+    VIMDIR=/usr/share/vim
+    mkdir -p $VIMDIR
+else
+    item "~/.vim/"
+    VIMDIR=$HOME/.vim
+    mkdir -p $VIMDIR
+fi
 
 item "~/.vim/vimrc"
 if [ $UNIT == "HEADLESS" ]; then
-    grep -v "RMHEADLESS" vimrc > $VIMDIR/vimrc
+    grep -v "RMHEADLESS" vimrc > $SCRIPT_DIR/.vimrc_headless
+    install $SCRIPT_DIR/.vimrc_headless $VIMDIR/vimrc
 else
     install $SCRIPT_DIR/vimrc $VIMDIR/vimrc
 fi
 
 item "~/.vim/autoload/plug.vim"
-curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if [ $UNIT == "HEADLESS" ]; then
+    curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+else
+    curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 # Done
 echo -e " \e[1;33mDONE\e[0m"

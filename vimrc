@@ -1,3 +1,5 @@
+set nocompatible
+
 " Formatting configuration
 filetype plugin indent on
 set spelllang=en_us
@@ -34,29 +36,24 @@ noremap <leader>9 9gt
 map <leader>n :NERDTreeToggle<CR>
 
 " Vim style configuration
-syntax on
+syntax enable
 
 set showcmd
 set showmatch
 
 set number
 set numberwidth=4
-highlight LineNr term=bold ctermfg=grey " RMHEADLESS
 
 set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
 
-highlight VertSplit ctermbg=NONE ctermfg=NONE term=NONE cterm=NONE gui=NONE "RMHEADLESS
-
-
 " Enable Plug plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin(expand('<sfile>:p:h') . '/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'mhartington/oceanic-next'
-Plug 'tribela/vim-transparent'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons' "RMHEADLESS
@@ -73,24 +70,28 @@ call plug#end()
 
 " Automatically install any Plug plugins
 autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \|   qa!
-  \| endif
+    \ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+        \| PlugInstall --sync
+        \| q
+        \| qa!
+    \| endif
 
 
 " Plugin configuration
 
 " Theme
-if (has("termguicolors")) "RMHEADLESS
-    set termguicolors "RMHEADLESS
-endif "RMHEADLESS
+if (has("termguicolors"))
+    set termguicolors
+endif
 colorscheme OceanicNext
 
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts=1 "RMHEADLESS
 let g:airline_theme='oceanicnext'
+
+highlight Normal ctermbg=NONE ctermfg=NONE term=NONE cterm=NONE gui=NONE
+
 
 " NERDTree
 let NERDTreeShowHidden=1
