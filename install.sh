@@ -31,34 +31,40 @@ item(){
 
 echo -e " \e[1;33mInstall type \e[1;35m$UNIT\e[0m"
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+
 # Bash config
 category "Bash config"
 item "~/.bash_aliases"
-install .bash_aliases $HOME/.bash_aliases
+install $SCRIPT_DIR/.bash_aliases $HOME/.bash_aliases
 item "~/.bashrc"
-install .bashrc $HOME/.bashrc
+install $SCRIPT_DIR/.bashrc $HOME/.bashrc
 item "~/.profile"
-install .profile $HOME/.profile
+install $SCRIPT_DIR/.profile $HOME/.profile
 
 category "Common folders"
 item "~/src/"
 SRCFOLDER=$HOME/src
 mkdir -p $SRCFOLDER
+item "~/.local/bin/"
+LOCALBIN=$HOME/.local/bin
+mkdir -p $LOCALBIN
 
 # Local scripts
 category "Local scripts"
-LOCALBIN=$HOME/.local/bin
 if [ $UNIT == "DESKTOP" ]; then
     item "~/.local/bin/middle-mouse-scroll"
-    install middle-mouse-scroll $LOCALBIN/middle-mouse-scroll
+    install $SCRIPT_DIR/middle-mouse-scroll $LOCALBIN/middle-mouse-scroll
 fi
 item "~/.local/bin/minesweeper"
-if [ ! -f $LOCALBIN/minesweeper ]; then
+if ! command -v minesweeper &> /dev/null
+then
     git clone --depth=1 git://joshstock.in/ncurses-minesweeper.git $SRCFOLDER/ncurses-minesweeper
     cd $SRCFOLDER/ncurses-minesweeper
     make compile build
     install bin/minesweeper $LOCALBIN/minesweeper
     rm -rf $SRCFOLDER/ncurses-minesweeper
+    cd $SCRIPT_DIR
 fi
 
 if [ $UNIT == "DESKTOP" ] || [ $UNIT == "LAPTOP" ]; then
@@ -70,10 +76,10 @@ if [ $UNIT == "DESKTOP" ] || [ $UNIT == "LAPTOP" ]; then
     mkdir -p $GTKDIR
 
     item "~/.config/gtk-3.0/gtk.css"
-    install gtk.css $GTKDIR/gtk.css
+    install $SCRIPT_DIR/gtk.css $GTKDIR/gtk.css
 
     item "Terminal theme 'Oceanic Next'"
-    ./terminal_theme.sh $1 &>/dev/null
+    $SCRIPT_DIR/terminal_theme.sh $1 &>/dev/null
 
     # Fonts
     category "Fonts"
@@ -107,7 +113,7 @@ fi
 category "Global git config"
 
 item "~/.gitconfig"
-install .gitconfig $HOME/.gitconfig
+install $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
 
 # Vim
 category "Vim config"
@@ -120,7 +126,7 @@ item "~/.vim/vimrc"
 if [ $UNIT == "HEADLESS" ]; then
     grep -v "RMHEADLESS" vimrc > $VIMDIR/vimrc
 else
-    install vimrc $VIMDIR/vimrc
+    install $SCRIPT_DIR/vimrc $VIMDIR/vimrc
 fi
 
 item "~/.vim/autoload/plug.vim"

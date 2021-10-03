@@ -55,7 +55,8 @@ highlight VertSplit ctermbg=NONE ctermfg=NONE term=NONE cterm=NONE gui=NONE "RMH
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
-Plug 'mhartington/oceanic-next' "RMHEADLESS
+Plug 'mhartington/oceanic-next'
+Plug 'tribela/vim-transparent'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons' "RMHEADLESS
@@ -81,15 +82,15 @@ autocmd VimEnter *
 " Plugin configuration
 
 " Theme
-if (has("termguicolors"))
+if (has("termguicolors")) "RMHEADLESS
     set termguicolors "RMHEADLESS
-endif
-colorscheme OceanicNext "RMHEADLESS
+endif "RMHEADLESS
+colorscheme OceanicNext
 
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts=1 "RMHEADLESS
-let g:airline_theme='oceanicnext' "RMHEADLESS
+let g:airline_theme='oceanicnext'
 
 " NERDTree
 let NERDTreeShowHidden=1
