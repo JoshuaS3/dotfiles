@@ -13,10 +13,6 @@ case $1 in
         UNIT=LAPTOP
         ;;
     headless)
-        if [ $(whoami) != "root" ]; then
-            echo "Root privileges required for headless install."
-            exit 1
-        fi
         UNIT=HEADLESS
         ;;
     *)
@@ -138,14 +134,16 @@ fi
 category "Vim config"
 
 if [ $UNIT == "HEADLESS" ]; then
-    item "/usr/share/vim/"
-    VIMDIR=/usr/share/vim
-    mkdir -p $VIMDIR
-    item "/usr/share/vim/vimrc"
-    grep -v "RMHEADLESS" vimrc > $SCRIPT_DIR/.vimrc_headless
-    install $SCRIPT_DIR/.vimrc_headless $VIMDIR/vimrc
-    item "/usr/share/vim/autoload/plug.vim"
-    curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if [ $(whoami) == "root" ]; then
+        item "/usr/share/vim/"
+        VIMDIR=/usr/share/vim
+        mkdir -p $VIMDIR
+        item "/usr/share/vim/vimrc"
+        grep -v "RMHEADLESS" vimrc > $SCRIPT_DIR/.vimrc_headless
+        install $SCRIPT_DIR/.vimrc_headless $VIMDIR/vimrc
+        item "/usr/share/vim/autoload/plug.vim"
+        curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
 else
     item "~/.vim/"
     VIMDIR=$HOME/.vim
