@@ -36,7 +36,7 @@ noremap <leader>9 9gt
 map <leader>n :NERDTreeToggle<CR>
 
 " Vim style configuration
-syntax enable
+syntax on
 
 set showcmd
 set showmatch
@@ -54,6 +54,7 @@ call plug#begin(expand('<sfile>:p:h') . '/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'mhartington/oceanic-next'
+Plug 'tribela/vim-transparent'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons' "RMHEADLESS
@@ -83,6 +84,7 @@ autocmd VimEnter *
 if (has("termguicolors"))
     set termguicolors
 endif
+
 colorscheme OceanicNext
 
 " Airline
@@ -90,8 +92,16 @@ set laststatus=2
 let g:airline_powerline_fonts=1 "RMHEADLESS
 let g:airline_theme='oceanicnext'
 
-highlight Normal ctermbg=NONE ctermfg=NONE term=NONE cterm=NONE gui=NONE
+highlight! link SignColumn LineNr
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight VertSplit ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
 
+let g:gitgutter_set_sign_backgrounds=1
+
+set updatetime=250
 
 " NERDTree
 let NERDTreeShowHidden=1

@@ -13,6 +13,10 @@ case $1 in
         UNIT=LAPTOP
         ;;
     headless)
+        if [ $(whoami) != "root" ]; then
+            echo "Root privileges required for headless install."
+            exit 1
+        fi
         UNIT=HEADLESS
         ;;
     *)
@@ -49,25 +53,31 @@ mkdir -p $SRCFOLDER
 item "~/.local/bin/"
 LOCALBIN=$HOME/.local/bin
 mkdir -p $LOCALBIN
-item "~/.local/fonts/"
-FONTDIR=$HOME/.local/fonts
-mkdir -p $FONTDIR
 item "~/.local/share/"
 mkdir -p $HOME/.local/share
 
 # Local scripts
 category "Local scripts"
-if [ $UNIT == "DESKTOP" ]; then
+if [ $UNIT == "DESKTOP" ] && [ $(whoami) != "root" ]; then
     item "~/.local/bin/middle-mouse-scroll"
     install $SCRIPT_DIR/middle-mouse-scroll $LOCALBIN/middle-mouse-scroll
 fi
-item "/usr/local/bin/minesweeper"
+
 if ! command -v minesweeper &> /dev/null
 then
+    if [ $(whoami) == "root" ]; then
+        item "/usr/local/bin/minesweeper"
+    else
+        item "~/.local/bin/minesweeper"
+    fi
     git clone --depth=1 git://joshstock.in/ncurses-minesweeper.git $SRCFOLDER/ncurses-minesweeper
     cd $SRCFOLDER/ncurses-minesweeper
     make compile build
-    install bin/minesweeper /usr/local/bin/minesweeper
+    if [ $(whoami) == "root" ]; then
+        install bin/minesweeper /usr/local/bin/minesweeper
+    else
+        install bin/minesweeper $LOCALBIN/minesweeper
+    fi
     rm -rf $SRCFOLDER/ncurses-minesweeper
     cd $SCRIPT_DIR
 fi
@@ -86,35 +96,43 @@ if [ $UNIT == "DESKTOP" ] || [ $UNIT == "LAPTOP" ]; then
     item "Terminal theme 'Oceanic Next'"
     $SCRIPT_DIR/terminal_theme.sh $1 &>/dev/null
 
-    # Fonts
-    category "Fonts"
+    if [ $(whoami) == "root" ]; then
+        # Fonts
+        category "Fonts"
+        FONTDIR=/usr/share/fonts
 
-    item "Fira Sans pack"
-    if [ ! -f $FONTDIR/FiraSans-Regular.ttf ]; then
-        curl -fLso /tmp/Fira.zip https://fonts.google.com/download?family=Fira%20Sans
-        unzip -q /tmp/Fira.zip -d $FONTDIR
-    fi
+        item "Fira Sans pack"
+        if [ ! -f $FONTDIR/FiraSans-Regular.ttf ]; then
+            curl -fLso /tmp/Fira.zip https://fonts.google.com/download?family=Fira%20Sans
+            unzip -q /tmp/Fira.zip -d $FONTDIR
+        fi
 
-    item "Fira Mono (Nerd Fonts) pack"
-    if [ ! -f $FONTDIR/FiraMono-Regular.otf ]; then
-        curl -fLso $FONTDIR/FiraMono-Regular.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Regular/complete/Fura%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.otf
-    fi
-    if [ ! -f $FONTDIR/FiraMono-Medium.otf ]; then
-        curl -fLso $FONTDIR/FiraMono-Medium.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Medium/complete/Fura%20Mono%20Medium%20Nerd%20Font%20Complete%20Mono.otf
-    fi
-    if [ ! -f $FONTDIR/FiraMono-Bold.otf ]; then
-        curl -fLso $FONTDIR/FiraMono-Bold.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Bold/complete/Fura%20Mono%20Bold%20Nerd%20Font%20Complete%20Mono.otf
-    fi
+        item "Fira Mono (Nerd Fonts) pack"
+        if [ ! -f $FONTDIR/FiraMono-Regular.otf ]; then
+            curl -fLso $FONTDIR/FiraMono-Regular.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Regular/complete/Fura%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.otf
+        fi
+        if [ ! -f $FONTDIR/FiraMono-Medium.otf ]; then
+            curl -fLso $FONTDIR/FiraMono-Medium.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Medium/complete/Fura%20Mono%20Medium%20Nerd%20Font%20Complete%20Mono.otf
+        fi
+        if [ ! -f $FONTDIR/FiraMono-Bold.otf ]; then
+            curl -fLso $FONTDIR/FiraMono-Bold.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Bold/complete/Fura%20Mono%20Bold%20Nerd%20Font%20Complete%20Mono.otf
+        fi
 
-    item "Refreshing font cache"
-    fc-cache
+        item "Refreshing font cache"
+        fc-cache
+    fi
 fi
 
 # Global git config
 category "Global git config"
 
-item "~/.gitconfig"
-install $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
+if [ $(whoami) == "root" ]; then
+    item "/etc/gitconfig"
+    install $SCRIPT_DIR/.gitconfig /etc/gitconfig
+else
+    item "~/.gitconfig"
+    install $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
+fi
 
 # Vim
 category "Vim config"
@@ -123,22 +141,20 @@ if [ $UNIT == "HEADLESS" ]; then
     item "/usr/share/vim/"
     VIMDIR=/usr/share/vim
     mkdir -p $VIMDIR
+    item "/usr/share/vim/vimrc"
+    grep -v "RMHEADLESS" vimrc > $SCRIPT_DIR/.vimrc_headless
+    install $SCRIPT_DIR/.vimrc_headless $VIMDIR/vimrc
+    item "/usr/share/vim/autoload/plug.vim"
+    curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 else
     item "~/.vim/"
     VIMDIR=$HOME/.vim
     mkdir -p $VIMDIR
-fi
-
-item "~/.vim/vimrc"
-if [ $UNIT == "HEADLESS" ]; then
-    grep -v "RMHEADLESS" vimrc > $SCRIPT_DIR/.vimrc_headless
-    install $SCRIPT_DIR/.vimrc_headless $VIMDIR/vimrc
-else
+    item "~/.vim/vimrc"
     install $SCRIPT_DIR/vimrc $VIMDIR/vimrc
+    item "~/.vim/autoload/plug.vim"
+    curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-
-item "~/.vim/autoload/plug.vim"
-curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Done
 echo -e " \e[1;33mDONE\e[0m"
