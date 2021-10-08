@@ -1,4 +1,10 @@
 set nocompatible
+set t_RB=
+set t_RF=
+set t_u7=
+
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
 
 " Formatting configuration
 filetype plugin indent on
@@ -78,29 +84,26 @@ autocmd VimEnter *
     \| endif
 
 
-" Plugin configuration
-
-" Theme
 if (has("termguicolors"))
     set termguicolors
 endif
 
+autocmd ColorScheme * highlight! link SignColumn LineNr
+autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight NonText ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight VertSplit cterm=NONE ctermbg=NONE guibg=NONE
+autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
+
 colorscheme OceanicNext
+
 
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts=1 "RMHEADLESS
 let g:airline_theme='oceanicnext'
 
-highlight! link SignColumn LineNr
-highlight Normal ctermbg=NONE guibg=NONE
-highlight NonText ctermbg=NONE guibg=NONE
-highlight VertSplit ctermbg=NONE guibg=NONE
-highlight SignColumn ctermbg=NONE guibg=NONE
-highlight LineNr ctermbg=NONE guibg=NONE
-
+" Git Gutter
 let g:gitgutter_set_sign_backgrounds=1
-
 set updatetime=250
 
 " NERDTree
