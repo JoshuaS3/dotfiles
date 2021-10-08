@@ -142,7 +142,9 @@ if [ $UNIT == "HEADLESS" ]; then
         grep -v "RMHEADLESS" vimrc > $SCRIPT_DIR/.vimrc_headless
         install $SCRIPT_DIR/.vimrc_headless $VIMDIR/vimrc
         item "/usr/share/vim/autoload/plug.vim"
-        curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        if [ ! -f $VIMDIR/autoload/plug.vim  ]; then
+            curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        fi
     fi
 else
     item "~/.vim/"
@@ -151,7 +153,9 @@ else
     item "~/.vim/vimrc"
     install $SCRIPT_DIR/vimrc $VIMDIR/vimrc
     item "~/.vim/autoload/plug.vim"
-    curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if [ ! -f $VIMDIR/autoload/plug.vim  ]; then
+        curl -fLso $VIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
 fi
 
 # Done

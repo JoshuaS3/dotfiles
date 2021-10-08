@@ -20,8 +20,10 @@ case $1 in
 esac
 
 cd "/tmp"
-wget -qO apply-colors.sh https://raw.githubusercontent.com/Mayccoll/Gogh/master/apply-colors.sh
-chmod +x apply-colors.sh
+if [ ! -f apply-colors.sh ]; then
+    wget -qO apply-colors.sh https://raw.githubusercontent.com/Mayccoll/Gogh/master/apply-colors.sh
+    chmod +x apply-colors.sh
+fi
 
 export COLOR_01="#121C21"           # HOST
 export COLOR_02="#E44754"           # SYNTAX_STRING
@@ -48,5 +50,3 @@ export CURSOR_COLOR="$FOREGROUND_COLOR" # Cursor
 export PROFILE_NAME="Oceanic Next"
 
 ./apply-colors.sh
-
-rm apply-colors.sh
