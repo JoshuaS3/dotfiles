@@ -41,6 +41,8 @@ item "~/.bashrc"
 install $SCRIPT_DIR/.bashrc $HOME/.bashrc
 item "~/.profile"
 install $SCRIPT_DIR/.profile $HOME/.profile
+item "~/.todo.cfg"
+install $SCRIPT_DIR/.todo.cfg $HOME/.todo.cfg
 
 category "Common folders"
 item "~/src/"
