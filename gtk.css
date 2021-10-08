@@ -13,12 +13,12 @@ vte-terminal {
     -gtk-icon-style: regular;
     -gtk-icon-transform: scale(0.9);
 }
-.panel button {
+.tasklist button {
     margin-left: 8px;
 }
-.panel button image {
+.tasklist button image {
     margin-left: 4px;
 }
-.panel button label {
+.tasklist button label {
     margin-left: 4px;
 }
