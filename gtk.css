@@ -14,7 +14,7 @@ vte-terminal {
     -gtk-icon-transform: scale(0.9);
 }
 .tasklist button {
-    margin-left: 8px;
+    margin-left: 2px;
 }
 .tasklist button image {
     margin-left: 4px;
