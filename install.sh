@@ -41,8 +41,15 @@ item "~/.bashrc"
 install $SCRIPT_DIR/.bashrc $HOME/.bashrc
 item "~/.profile"
 install $SCRIPT_DIR/.profile $HOME/.profile
+
+# Misc config
+category "Misc config"
 item "~/.todo.cfg"
 install $SCRIPT_DIR/.todo.cfg $HOME/.todo.cfg
+if [ $UNIT == "LAPTOP" ]; then
+    item "~/.xsessionrc"
+    install $SCRIPT_DIR/.xsessionrc $HOME/.xsessionrc
+fi
 
 category "Common folders"
 item "~/src/"
