@@ -47,8 +47,8 @@ category "Misc config"
 item "~/.todo.cfg"
 install $SCRIPT_DIR/.todo.cfg $HOME/.todo.cfg
 if [ $UNIT == "LAPTOP" ]; then
-    item "~/.xsessionrc"
-    install $SCRIPT_DIR/.xsessionrc $HOME/.xsessionrc
+    item "~/.xprofile"
+    install $SCRIPT_DIR/.xprofile $HOME/.xprofile
 fi
 
 category "Common folders"
