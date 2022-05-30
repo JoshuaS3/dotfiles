@@ -52,6 +52,8 @@ if [ $UNIT == "LAPTOP" ]; then
 fi
 item "~/.xonshrc"
 install $SCRIPT_DIR/.xonshrc $HOME/.xonshrc
+item "~/.xonsh_aliases"
+install $SCRIPT_DIR/.xonsh_aliases $HOME/.xonsh_aliases
 
 category "Common folders"
 item "~/src/"

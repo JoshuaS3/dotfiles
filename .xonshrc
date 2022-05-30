@@ -1,3 +1,6 @@
 # XONSH WEBCONFIG START
 $PROMPT = '{env_name}{WHITE}[{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET}{INTENSE_WHITE}]{prompt_end}{RESET} '
 # XONSH WEBCONFIG END
+#
+if p"$HOME/.xonsh_aliases".exists():
+    source $HOME/.xonsh_aliases

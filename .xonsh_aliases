@@ -1,0 +1,9 @@
+aliases["python"]='python3'
+aliases["v"]='vim'
+aliases["gp"]='git push; git push github'
+
+aliases["t"]='todo.sh'
+aliases["todo"]='todo.sh'
+aliases["tl"]='todo.sh ls'
+aliases["tla"]='todo.sh lsa'
+aliases["ta"]='todo.sh add'
