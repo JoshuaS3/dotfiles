@@ -50,6 +50,8 @@ if [ $UNIT == "LAPTOP" ]; then
     item "~/.xprofile"
     install $SCRIPT_DIR/.xprofile $HOME/.xprofile
 fi
+item "~/.xonshrc"
+install $SCRIPT_DIR/.xonshrc $HOME/.xonshrc
 
 category "Common folders"
 item "~/src/"
