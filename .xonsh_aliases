@@ -2,6 +2,8 @@ aliases["python"]='python3'
 aliases["v"]='vim'
 aliases["gp"]='git push; git push github'
 
+aliases["cat"]='highlight -O ansi'
+
 aliases["t"]='todo.sh'
 aliases["todo"]='todo.sh'
 aliases["tl"]='todo.sh ls'
