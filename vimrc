@@ -71,6 +71,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
+Plug 'meatballs/vim-xonsh'
 
 call plug#end()
 
