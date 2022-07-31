@@ -66,8 +66,8 @@ item "~/.local/share/"
 mkdir -p $HOME/.local/share
 
 # Local scripts
-category "Local scripts"
 if [ $UNIT == "DESKTOP" ] && [ $(whoami) != "root" ]; then
+    category "Local scripts"
     item "~/.local/bin/middle-mouse-scroll"
     install $SCRIPT_DIR/middle-mouse-scroll $LOCALBIN/middle-mouse-scroll
 fi
@@ -102,7 +102,7 @@ if [ $UNIT == "DESKTOP" ] || [ $UNIT == "LAPTOP" ]; then
     item "~/.config/gtk-3.0/gtk.css"
     install $SCRIPT_DIR/gtk.css $GTKDIR/gtk.css
 
-    item "Terminal theme 'Oceanic Next'"
+    item "Terminal theme"
     $SCRIPT_DIR/terminal_theme.sh $1 &>/dev/null
 
     if [ $(whoami) == "root" ]; then

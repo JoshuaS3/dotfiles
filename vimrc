@@ -29,6 +29,8 @@ noremap <leader><CR>6 :b6<CR>
 noremap <leader><CR>7 :b7<CR>
 noremap <leader><CR>8 :b8<CR>
 noremap <leader><CR>9 :b9<CR>
+noremap <leader>t :ter<CR>
+noremap <leader>r :so $MYVIMRC<CR>
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
@@ -59,7 +61,8 @@ set expandtab
 call plug#begin(expand('<sfile>:p:h') . '/plugged')
 
 Plug 'vim-airline/vim-airline'
-Plug 'mhartington/oceanic-next'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sainnhe/sonokai'
 Plug 'tribela/vim-transparent'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
@@ -72,6 +75,9 @@ Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
 Plug 'meatballs/vim-xonsh'
+Plug 'valloric/matchtagalways'
+Plug 'godlygeek/tabular'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
@@ -95,13 +101,15 @@ autocmd ColorScheme * highlight NonText ctermbg=NONE guibg=NONE
 autocmd ColorScheme * highlight VertSplit cterm=NONE ctermbg=NONE guibg=NONE
 autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
 
-colorscheme OceanicNext
+let g:sonokai_style = 'atlantis'
+let g:sonokai_better_performance = 1
 
+colorscheme sonokai
 
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts=1 "RMHEADLESS
-let g:airline_theme='oceanicnext'
+let g:airline_theme='sonokai'
 
 " Git Gutter
 let g:gitgutter_set_sign_backgrounds=1

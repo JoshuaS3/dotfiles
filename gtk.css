@@ -7,7 +7,7 @@
     color:white;
 }
 vte-terminal {
-    padding: 12px;
+    padding: 16px;
 }
 #indicator-button image {
     -gtk-icon-style: regular;

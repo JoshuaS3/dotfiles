@@ -25,28 +25,29 @@ if [ ! -f apply-colors.sh ]; then
     chmod +x apply-colors.sh
 fi
 
-export COLOR_01="#121C21"           # HOST
-export COLOR_02="#E44754"           # SYNTAX_STRING
-export COLOR_03="#89BD82"           # COMMAND
-export COLOR_04="#F7BD51"           # COMMAND_COLOR2
-export COLOR_05="#5486C0"           # PATH
-export COLOR_06="#B77EB8"           # SYNTAX_VAR
-export COLOR_07="#50A5A4"           # PROMP
-export COLOR_08="#FFFFFF"           #
+export COLOR_01="#292D3E"           # Black
+export COLOR_02="#F07178"           # Red
+export COLOR_03="#62DE84"           # Green
+export COLOR_04="#FFCB6B"           # Yellow
+export COLOR_05="#75A1FF"           # Blue
+export COLOR_06="#F580FF"           # Magenta
+export COLOR_07="#60BAEC"           # Cyan
+export COLOR_08="#ABB2BF"           # Light gray
 
-export COLOR_09="#52606B"           #
-export COLOR_10="#E44754"           # COMMAND_ERROR
-export COLOR_11="#89BD82"           # EXEC
-export COLOR_12="#F7BD51"           #
-export COLOR_13="#5486C0"           # FOLDER
-export COLOR_14="#B77EB8"           #
-export COLOR_15="#50A5A4"           #
-export COLOR_16="#FFFFFF"           #
+export COLOR_09="#959DCB"           # Dark gray
+export COLOR_10="#F07178"           # Light Red
+export COLOR_11="#C3E88D"           # Light Green
+export COLOR_12="#FF5572"           # Light Yellow
+export COLOR_13="#82AAFF"           # Light Blue
+export COLOR_14="#FFCB6B"           # Light Magenta
+export COLOR_15="#676E95"           # Light Cyan
+export COLOR_16="#FFFEFE"           # White
 
 
 export BACKGROUND_COLOR="#1b2b34"   # Background Color
-export FOREGROUND_COLOR="#cdcfd4"   # Text
-export CURSOR_COLOR="$FOREGROUND_COLOR" # Cursor
-export PROFILE_NAME="Oceanic Next"
+export FOREGROUND_COLOR="#BFC7D5"   # Foreground Color (text)
+export CURSOR_COLOR="$FOREGROUND_COLOR" # Cursor color
+export PROFILE_NAME="Gogh"
+
 
 ./apply-colors.sh
