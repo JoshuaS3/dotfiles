@@ -46,10 +46,6 @@ install $SCRIPT_DIR/.profile $HOME/.profile
 category "Misc config"
 item "~/.todo.cfg"
 install $SCRIPT_DIR/.todo.cfg $HOME/.todo.cfg
-if [ $UNIT == "LAPTOP" ]; then
-    item "~/.xprofile"
-    install $SCRIPT_DIR/.xprofile $HOME/.xprofile
-fi
 item "~/.xonshrc"
 install $SCRIPT_DIR/.xonshrc $HOME/.xonshrc
 item "~/.xonsh_aliases"
