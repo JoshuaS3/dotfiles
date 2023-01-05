@@ -4,3 +4,6 @@ $PROMPT = '{env_name}{WHITE}[{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{bran
 #
 if p"$HOME/.xonsh_aliases".exists():
     source $HOME/.xonsh_aliases
+
+if p"$HOME/esp/esp-idf/export.sh".exists():
+    source $HOME/esp/esp-idf/export.sh
