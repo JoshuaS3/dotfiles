@@ -3,6 +3,7 @@ $PROMPT = '{env_name}{WHITE}[{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{bran
 # XONSH WEBCONFIG END
 #
 if p"$HOME/.xonsh_aliases".exists():
+    $FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE = True
     source $HOME/.xonsh_aliases
 
 if p"$HOME/esp/esp-idf/export.sh".exists():
