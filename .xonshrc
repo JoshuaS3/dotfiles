@@ -6,4 +6,4 @@ if p"$HOME/.xonsh_aliases".exists():
     source $HOME/.xonsh_aliases
 
 if p"$HOME/esp/esp-idf/export.sh".exists():
-    source $HOME/esp/esp-idf/export.sh
+    source-bash $HOME/esp/esp-idf/export.sh
