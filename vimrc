@@ -73,11 +73,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
-Plug 'ervandew/supertab'
 Plug 'meatballs/vim-xonsh'
 Plug 'valloric/matchtagalways'
 Plug 'godlygeek/tabular'
-Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
