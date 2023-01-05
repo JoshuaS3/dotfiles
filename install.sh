@@ -62,10 +62,12 @@ item "~/.local/share/"
 mkdir -p $HOME/.local/share
 
 # Local scripts
-if [ $UNIT == "DESKTOP" ] && [ $(whoami) != "root" ]; then
+if [ $UNIT != "HEADLESS" ] && [ $(whoami) != "root" ]; then
     category "Local scripts"
     item "~/.local/bin/middle-mouse-scroll"
     install $SCRIPT_DIR/middle-mouse-scroll $LOCALBIN/middle-mouse-scroll
+    item "~/.local/bin/middle-mouse-reset"
+    install $SCRIPT_DIR/middle-mouse-reset $LOCALBIN/middle-mouse-reset
 fi
 
 if ! command -v minesweeper &> /dev/null
