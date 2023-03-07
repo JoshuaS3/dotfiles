@@ -5,3 +5,6 @@ $PROMPT = '{env_name}{WHITE}[{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{bran
 if p"$HOME/.xonsh_aliases".exists():
     $FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE = True
     source $HOME/.xonsh_aliases
+
+if p"$HOME/.local/bin/se261.xsh".exists():
+    source $HOME/.local/bin/se261.xsh
