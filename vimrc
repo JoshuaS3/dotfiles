@@ -46,6 +46,7 @@ map <leader>n :NERDTreeToggle<CR>
 " Vim style configuration
 syntax on
 
+set scrolloff=12
 set showcmd
 set showmatch
 
@@ -115,3 +116,4 @@ set updatetime=250
 
 " NERDTree
 let NERDTreeShowHidden=1
+let NERDTreeChDirMode=3
