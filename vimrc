@@ -20,26 +20,26 @@ noremap <leader>w ^
 noremap <leader>e $
 noremap <leader>f <c-w>
 noremap <c-n> :tabnew<CR>
-noremap <leader><CR>1 1gt
-noremap <leader><CR>2 2gt
-noremap <leader><CR>3 3gt
-noremap <leader><CR>4 4gt
-noremap <leader><CR>5 5gt
-noremap <leader><CR>6 6gt
-noremap <leader><CR>7 7gt
-noremap <leader><CR>8 8gt
-noremap <leader><CR>9 9gt
+noremap <leader><CR>1 :b1<CR>
+noremap <leader><CR>2 :b2<CR>
+noremap <leader><CR>3 :b3<CR>
+noremap <leader><CR>4 :b4<CR>
+noremap <leader><CR>5 :b5<CR>
+noremap <leader><CR>6 :b6<CR>
+noremap <leader><CR>7 :b7<CR>
+noremap <leader><CR>8 :b8<CR>
+noremap <leader><CR>9 :b9<CR>
 noremap <leader>t :ter<CR>
 noremap <leader>r :so $MYVIMRC<CR>
-noremap <leader>1 :b1<CR>
-noremap <leader>2 :b2<CR>
-noremap <leader>3 :b3<CR>
-noremap <leader>4 :b4<CR>
-noremap <leader>5 :b5<CR>
-noremap <leader>6 :b6<CR>
-noremap <leader>7 :b7<CR>
-noremap <leader>8 :b8<CR>
-noremap <leader>9 :b9<CR>
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
 
 map <leader>n :NERDTreeToggle<CR>
 
@@ -77,6 +77,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'meatballs/vim-xonsh'
 Plug 'valloric/matchtagalways'
 Plug 'godlygeek/tabular'
+Plug 'jistr/vim-nerdtree-tabs'
 
 call plug#end()
 
@@ -117,3 +118,13 @@ set updatetime=250
 " NERDTree
 let NERDTreeShowHidden=1
 let NERDTreeChDirMode=3
+
+" Open NERDTree with vim
+let g:nerdtree_tabs_open_on_console_startup=1
+" Open NERDTree in the new tabs
+let g:nerdtree_tabs_open_on_new_tab=1
+let g:nerdtree_tabs_meaningful_tab_names=1
+let g:nerdtree_tabs_toggle=1
+let g:nerdtree_tabs_autoclose=1
+" Synchronize NERDTree's tabs
+let g:nerdtree_tabs_synchronize_view=1
