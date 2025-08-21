@@ -44,8 +44,6 @@ install $SCRIPT_DIR/.profile $HOME/.profile
 
 # Misc config
 category "Misc config"
-item "~/.todo.cfg"
-install $SCRIPT_DIR/.todo.cfg $HOME/.todo.cfg
 item "~/.xonshrc"
 install $SCRIPT_DIR/.xonshrc $HOME/.xonshrc
 item "~/.xonsh_aliases"
@@ -68,6 +66,8 @@ if [ $UNIT != "HEADLESS" ] && [ $(whoami) != "root" ]; then
     install $SCRIPT_DIR/middle-mouse-scroll $LOCALBIN/middle-mouse-scroll
     item "~/.local/bin/middle-mouse-reset"
     install $SCRIPT_DIR/middle-mouse-reset $LOCALBIN/middle-mouse-reset
+    item "~/.local/bin/prime-run"
+    install $SCRIPT_DIR/prime-run $LOCALBIN/prime-run
 fi
 
 if ! command -v minesweeper &> /dev/null

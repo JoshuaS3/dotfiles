@@ -5,3 +5,5 @@
 	editor = vim
 [commit]
 	gpgsign = true
+[safe]
+	directory = josh
